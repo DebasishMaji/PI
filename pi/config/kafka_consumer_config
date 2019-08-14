@@ -1,5 +1,0 @@
-kafka:
-  bootstrap_server:
-  kafka_topic:
-  group_id:
-  topic_partition:
