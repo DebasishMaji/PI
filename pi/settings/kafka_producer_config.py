@@ -1,11 +1,20 @@
 import yaml
-import os
+from .kafka_config import *
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 
-with open(BASE_DIR +"/config/kafka_producer_config.yml", 'r') as ymlfile:
-    cfg = yaml.load(ymlfile)
+class KafkaConsumerConfig(KafkaConfig):
+    def __init__(self):
+        self.producer_cfg = None
+        super(KafkaConsumerConfig, self).__init__()
 
-for section in cfg:
-    print(section)
-print(cfg['kafka'])
+    def parse_config(self):
+        with open(self.BASE_DIR + "/config/kafka_producer_config.yml", 'r') as consumer_yml_file:
+            self.producer_cfg = yaml.load(consumer_yml_file)
+
+    def fetch_config(self):
+        for section in self.producer_cfg:
+            self.PILogger.info(section)
+        self.PILogger.info(self.producer_cfg['kafka'])
+
+        return self.producer_cfg['kafka']
+

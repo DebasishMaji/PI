@@ -1,11 +1,8 @@
-import configparser
-import argparse
-
+from ..client import *
 
 def main():
-    config = configparser.ConfigParser()
-    data = config.read("/settings/kafka_consumer_config.yml")
-
+    producer = KafkaProducer()
+    producer.se
 
 if __name__ == '__main__':
     main()
