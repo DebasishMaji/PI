@@ -19,4 +19,10 @@ class KafkaConsumerClient(KafkaClient):
 
     def consume_message(self):
         # TODO: Yet to be implemented
-        raise NotImplementedError("Yet to be implemented")
+        for message in self.kafka_consumer:
+            # message value and key are raw bytes -- decode if necessary!
+            # e.g., for unicode: `message.value.decode('utf-8')`
+            print("%s:%d:%d: key=%s value=%s" % (message.topic, message.partition,
+                                                 message.offset, message.key,
+                                                 message.value))
+        # raise NotImplementedError("Yet to be implemented")

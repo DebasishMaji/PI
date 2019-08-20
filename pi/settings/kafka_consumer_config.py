@@ -1,11 +1,13 @@
+from ..settings import *
 import yaml
-from .kafka_config import *
+from .kafka_config import KafkaConfig
 
 
 class KafkaConsumerConfig(KafkaConfig):
     def __init__(self):
-        self.consumer_cfg = None
         super(KafkaConsumerConfig, self).__init__()
+        self.consumer_cfg = None
+        self.parse_config()
 
     def parse_config(self):
         with open(self.BASE_DIR + "/config/kafka_consumer_config.yml", 'r') as consumer_yml_file:
@@ -13,7 +15,7 @@ class KafkaConsumerConfig(KafkaConfig):
 
     def fetch_config(self):
         for section in self.consumer_cfg:
-            self.PILogger.info(section)
-        self.PILogger.info(self.consumer_cfg['kafka'])
+            PILogger.info(section)
+        PILogger.info(self.consumer_cfg['kafka'])
 
         return self.consumer_cfg['kafka']

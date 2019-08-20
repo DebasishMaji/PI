@@ -1,5 +1,5 @@
 kafka:
-  bootstrap_server: localhost:1234
+  bootstrap_servers: localhost:9092
   kafka_topic: test_topic
   group_id: test_group
   topic_partition: test_partition
