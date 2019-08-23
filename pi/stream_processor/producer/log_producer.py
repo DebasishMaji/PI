@@ -2,6 +2,7 @@ from pi import KafkaProducerClient
 
 
 class LogProducer(object):
+    # TODO: Implement parallel processing
     producer = KafkaProducerClient()
     for idx in range(1000):
         data = {
