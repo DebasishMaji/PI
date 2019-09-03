@@ -3,3 +3,6 @@ kafka:
   kafka_topic: test_topic
   group_id: test_group
   topic_partition: test_partition
+
+zookeeper: localhost:2181
+TIMER: 60 #In seconds
