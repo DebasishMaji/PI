@@ -1,8 +1,8 @@
 kafka:
   bootstrap_servers: localhost:9092
-  kafka_topic: test_topic
-  group_id: test_group
-  topic_partition: test_partition
+  kafka_topic: test_topic_1
+  group_id: test_group_1
+  topic_partition: test_partition_1
 
 zookeeper: localhost:2181
 TIMER: 60 #In seconds

@@ -14,7 +14,6 @@ class KafkaConsumerClient(KafkaClient):
         super(KafkaConsumerClient, self).__init__()
 
     def get_client(self):
-
         return self.kafka_consumer
 
     def consume_message(self):

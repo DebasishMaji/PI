@@ -64,4 +64,4 @@ class LogProducer(object):
             },
             "responseTime": 98
         }
-        producer.send_message(data=data)
+        # producer.send_message(data=data)

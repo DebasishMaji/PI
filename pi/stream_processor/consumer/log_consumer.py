@@ -14,15 +14,18 @@ class LogConsumer(object):
         self.config = BaseConfig()
         self.consumer_config = self.config.fetch_consumer_config()
         self.spark_streaming_context = StreamingContext(self.spark_context, self.consumer_config.get("TIMER"))
-        # kafkaStream = KafkaUtils.createStream(self.spark_streaming_context, self.consumer_config.get("zookeeper"), 'spark-streaming',
-        #                                       {'twitter': 1})
+        self.kafkaStream = KafkaUtils.createStream(self.spark_streaming_context,
+                                              self.consumer_config["zookeeper"],
+                                              self.consumer_config["kafka"]["group_id"],
+                                              {self.consumer_config["kafka"]["kafka_topic"]: 1})
 
     def stream_data(self):
         self.kafka_consumer_client.consume_message()
 
     def stream_data_through_spark(self):
-        pass
+        lines = self.kafkaStream.map(lambda x: x[1])
+        for line in lines:
+            print(line)
+        self.spark_streaming_context.start()
+        self.spark_streaming_context.awaitTermination()
 
-
-if __name__ == '__main__':
-    log_consumer = LogConsumer()
